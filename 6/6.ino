@@ -7,7 +7,7 @@
 #define DELAY_500MS   delay(500)
 #define DELAY_50MS    delay(50)
 #define LED_PIN 11
-uint32_t value_potA1entiometer;
+uint32_t value_potentiometer;
 uint32_t value_servo;
 Servo myServo;
 uint32_t hua = 180;
@@ -52,13 +52,15 @@ void setup(){
 void outputValuesToConsole(){
   if(c > 10){
     c=0;
-
-  Serial.print("P: ");
-  Serial.println(value_potentiometer);
-  Serial.print("Servo: ");
-  Serial.println(value_servo);
-  Serial.print("success: ");
-  Serial.println(setServoMotor(value_servo));
+    Serial.print(",");
+    Serial.print("potentiometer:");
+    Serial.print(value_potentiometer);
+    Serial.print(",");
+    Serial.print("servo:");
+    Serial.println(value_servo);
+    Serial.print(",");
+    Serial.print("LED:");
+    Serial.print(value_potentiometer/4U);
 
   }
   c++;
@@ -70,5 +72,6 @@ void loop()
   convertPotiServo();
   setLEDLevel(value_potentiometer);
   outputValuesToConsole();
+  setServoMotor(value_servo);
   delay(30);
 }
