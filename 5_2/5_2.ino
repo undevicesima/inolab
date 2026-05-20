@@ -33,8 +33,12 @@ void convertPotiServo(){
   value_servo =(value_potentiometer * hua) / enzd;
 }
 
-void setLEDLevel(unsigned int val){
-  analogWrite(LED_PIN,((val)/4U)); // todo pwm
+void setLEDLevel(unsigned int pVal){
+    // Wert auf PWM-Bereich umrechnen (0-255)
+    // map(value, fromLow, fromHigh, toLow, toHigh)
+    int brightness = map(pVal, 0, 1023, 0, 255);
+    // LED-Helligkeit setzen
+    analogWrite(PIN_LED, brightness);
 }
 
 
